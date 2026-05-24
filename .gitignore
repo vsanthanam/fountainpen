@@ -1,0 +1,36 @@
+# Jekyll output
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Temporary files
+*.log
+*.tmp
+*.swp
+*.bak
+
+# VS Code or other editor settings
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Node (optional if using npm for tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Ruby bundler files
+.bundle/
+vendor/
+
+# GitHub Pages artifacts
+*.gem
+
+# Compression archives
+*.zip
+*.tar.gz

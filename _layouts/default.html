@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if site.github.repository_name %}{{ site.github.repository_name }}{% else %}{{ site.title }}{% endif %}</title>
+  <meta property="og:title" content="{% if site.github.repository_name %}{{ site.github.repository_name }}{% else %}{{ site.title }}{% endif %}" />
+  <meta property="og:description" content="{% if site.github.project_description %}{{ site.github.project_description }}{% else %}{{ site.description }}{% endif %}" />
+  <meta property="og:image" content="{% if site.social_image %}{{ site.social_image }}{% else %}{{ site.social_image | default: '/assets/images/social-card.png' }}{% endif %}" />
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <!-- Font Awesome for the button arrow icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  {% if page.custom_css %}
+    {% for stylesheet in page.custom_css %}
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/{{ stylesheet }}.css">
+    {% endfor %}
+  {% endif %}
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="wordmark-strip">
+        <span class="wordmark">{% if site.github.repository_name %}{{ site.github.repository_name }}{% else %}{{ site.title }}{% endif %}</span>
+        <span class="wordmark-right">{% if page.url != '/' and page.title %}{{ page.title }}{% endif %}</span>
+      </div>
+      <hr class="header-rule" />
+
+      {% if site.metadata.size > 0 %}
+      <div class="metadata-strip">{{ site.metadata | join: '   ·   ' }}</div>
+      {% endif %}
+
+      {% if site.github.project_description %}{% assign hero_text = site.github.project_description %}{% else %}{% assign hero_text = site.description %}{% endif %}
+      {% if site.hero_accents %}{% for word in site.hero_accents %}{% capture wrapped %}<span class="accent-word">{{ word }}</span>{% endcapture %}{% assign hero_text = hero_text | replace: word, wrapped %}{% endfor %}{% endif %}
+      <p class="hero">{{ hero_text }}</p>
+
+      <nav class="cta-buttons">
+        <a href="{% if site.github.repository_url %}{{ site.github.repository_url }}{% else %}{{ site.github_repo }}{% endif %}" class="btn">
+          <span class="btn-label">View on GitHub</span>
+          <i class="btn-arrow fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        {% if site.documentation_url %}
+        <a href="{{ site.documentation_url }}" class="btn">
+          <span class="btn-label">Documentation</span>
+          <i class="btn-arrow fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        {% endif %}
+        {% if site.download_url %}
+        <a href="{{ site.download_url }}" class="btn">
+          <span class="btn-label">Download</span>
+          <i class="btn-arrow fas fa-arrow-right" aria-hidden="true"></i>
+        </a>
+        {% endif %}
+      </nav>
+    </header>
+
+    <hr class="hero-rule" />
+
+    <main class="page-content">
+      {{ content }}
+    </main>
+
+    <footer class="site-footer">
+      <hr class="footer-rule" />
+      <p class="footer-line">
+        <span class="footer-mark">{% if site.github.repository_name %}{{ site.github.repository_name }}{% else %}{{ site.title }}{% endif %}</span>
+        <span class="footer-middot" aria-hidden="true">·</span>
+        <span class="footer-copy">&copy; {{ site.time | date: '%Y' }} {% if site.copyright_owner != '' %}{{ site.copyright_owner }}{% elsif site.github.owner_name %}{{ site.github.owner_name }}{% endif %}</span>
+      </p>
+    </footer>
+  </div>
+</body>
+</html>

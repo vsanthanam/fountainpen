@@ -1,0 +1,60 @@
+title: "FountainPen"           # Fallback if GitHub metadata is unavailable
+description: "A Swiss editorial Jekyll theme for Swift package documentation"
+
+baseurl: ""
+url: ""
+
+# Optional documentation button (omit or leave blank to hide)
+documentation_url: "https://example.com/docs"
+
+# Optional download button (omit or leave blank to hide)
+download_url: "https://example.com/downloads"
+
+# Optional uppercase metadata strip rendered beneath the header rule.
+# Each entry is a short label (version, license, language tag, etc.).
+# Comment out or set to an empty list to hide the strip entirely.
+metadata:
+  - "v0.1"
+  - "MIT"
+  - "Swift 6.1"
+
+# Optional list of words in the hero description to render in the accent color.
+# Case-sensitive. List longer words BEFORE any substrings of them
+# (e.g. ["SwiftUI", "Swift"] so "Swift" doesn't break "SwiftUI" mid-replace).
+hero_accents:
+  - "Swiss"
+
+# Optional overrides
+copyright_owner: ""            # Override the footer copyright name (defaults to GitHub owner if empty)
+
+# Build settings
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+highlighter: rouge
+permalink: pretty
+
+# SASS settings
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Plugins (mirrors what the gemspec declares as runtime deps)
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Defaults
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
